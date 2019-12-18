@@ -5,10 +5,13 @@ using UnityEngine;
 public class CardsBehaviour : MonoBehaviour
 {
     [SerializeField] private float delay;
+    [SerializeField] private float delay2;
     public Animator animator;
     private int cardsUp = 0;
     public GameObject cardsCounter;
-    private bool canClick = false;
+    public bool canClick = false;
+    public GameObject wishesManager;
+    [SerializeField]private int combination;
 
     void Start()
     {
@@ -17,12 +20,11 @@ public class CardsBehaviour : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(cardsUp);
-         cardsUp = cardsCounter.GetComponent<CardsCounter>().counter;
-         if(cardsUp == 3)
-         {
-             animator.SetTrigger("Turn Down");
-         }
+        cardsUp = cardsCounter.GetComponent<CardsCounter>().counter;
+        if(cardUp == 3)
+        {
+            WrongCombination();
+        }
     }
 
     IEnumerator TurnCardsDown()
@@ -38,6 +40,17 @@ public class CardsBehaviour : MonoBehaviour
         {
             animator.SetTrigger("Turn Up");
             cardsCounter.GetComponent<CardsCounter>().counter++;
+            if(wishesManager.GetComponent<WishesBehaviour>().wish != combination)
+            {
+                animator.SetTrigger("Turn Down");
+            }
         }
     }
+
+    IEnumerator WrongCombination()
+    {
+            yield return new WaitForSeconds(delay2);
+            animator.SetTrigger("Turn Down");
+    }
+
 }
