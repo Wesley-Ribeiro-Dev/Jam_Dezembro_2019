@@ -18,7 +18,7 @@ public class ScrollBehaviour : MonoBehaviour
     {
         if((Input.GetKeyDown(KeyCode.Z)) && !scrollOn)
         {
-            if(mold.GetComponent<CardsBehaviour>().canClick)
+            if(mold.GetComponent<CardsBehaviour>().useScroll)
             {
                 ShowScroll();
             }

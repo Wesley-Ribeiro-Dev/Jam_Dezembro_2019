@@ -8,7 +8,9 @@ public class WishesBehaviour : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentWish;
     public GameObject mold;
     public int wish;
-    public List<int> usedNumbers = new List<int> ();
+    private List<int> usedNumbers = new List<int> ();
+    public GameObject gameManager;
+    private int cont = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +21,11 @@ public class WishesBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if(Input.GetKeyDown(KeyCode.A))
+            if((gameManager.GetComponent<CardsCounter>().next) && cont != 6)
             {
                 ChangeWish();
+                gameManager.GetComponent<CardsCounter>().next = false;
+                cont++;
             }
     }
 
@@ -37,5 +41,7 @@ public class WishesBehaviour : MonoBehaviour
         {
             ChangeWish();
         }
+        gameManager.GetComponent<CardsCounter>().next = false;
+        Debug.Log(cont);
     }
 }

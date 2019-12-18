@@ -115,8 +115,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13281d290d176f641b8582f6f99f3599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 10
+  delay: 1
+  delay2: 1.5
+  delay3: 0
+  delay4: 1.5
   animator: {fileID: 3593619143327103277}
+  gameManager: {fileID: 0}
+  canClick: 0
+  combination: 0
+  Wrong: {fileID: 0}
+  Right: {fileID: 0}
 --- !u!61 &-3585650367109462193
 BoxCollider2D:
   m_ObjectHideFlags: 0
