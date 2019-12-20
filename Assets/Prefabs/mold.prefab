@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2850705218360472767}
-  m_LocalRotation: {x: 0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: -7.85, y: -6.89, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2850705218388725396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!212 &2850705218360472760
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13281d290d176f641b8582f6f99f3599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 1
+  delay: 10
   delay2: 1.5
   delay3: 0
   delay4: 1.5
@@ -125,6 +125,11 @@ MonoBehaviour:
   combination: 0
   Wrong: {fileID: 0}
   Right: {fileID: 0}
+  correct: 0
+  useScroll: 0
+  cardFlip: {fileID: 0}
+  success: {fileID: 0}
+  failure: {fileID: 0}
 --- !u!61 &-3585650367109462193
 BoxCollider2D:
   m_ObjectHideFlags: 0

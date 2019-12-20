@@ -10,23 +10,40 @@ public class TimerBehaviour : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timer;
     public float time;
-    public GameObject mold;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject mold;
+    
+    [SerializeField] private GameObject levelChanger;
+    public bool timeEnded = false;
+    private int cont = 0;
+    private int cont1 = 0;
+    private int cont2 = 0;
+    public int cont3 = 0;
+    [SerializeField] private GameObject TimeUp;
+    [SerializeField] private int delay;
+    [SerializeField] private int delay2;
+    [SerializeField] private GameObject Congratulations;
+    public bool won = false;
 
     // Update is called once per frame
     void Update()
     {
-        if(time <= 0)
+        if(cont1 == 60)
         {
-            TimeEnded();
+            StartCoroutine(GameWon());
+        }
+
+        if(time <= 0.1)
+        {
+            time = 0;
+        }
+
+        if(time <= 0.1)
+        {
+            timeEnded = true;
+            StartCoroutine(TimeEnded());
         }
         TimeLeft();
-        if(mold.GetComponent<CardsBehaviour>().canClick)
+        if((mold.GetComponent<CardsBehaviour>().canClick) && (!timeEnded))
             {
               time -= Time.deltaTime;
            }
@@ -37,9 +54,48 @@ public class TimerBehaviour : MonoBehaviour
         timer.SetText("Tempo restante: " + Math.Round(time, 0));
     }
 
-    private void TimeEnded()
+    IEnumerator TimeEnded()
     {
-        SceneManager.LoadScene("Game Over");
+        yield return new WaitForSeconds(delay2);
+        TimeUp.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        levelChanger.GetComponent<LevelChanger>().FadeToLevel(2);
+    }
+
+    IEnumerator GameWon()
+    {
+        won = true;
+        yield return new WaitForSeconds(delay2);
+        Congratulations.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        levelChanger.GetComponent<LevelChanger>().FadeToLevel(3);
+    }
+
+    public void IncreaseTime()
+    {
+        cont++;
+        if(cont == 1)
+        {
+            time += 15;
+            cont1 += 10;
+        }
+        if(cont == 3)
+        {
+            cont = 0;
+        }
+    }
+
+    public void DecreaseTime()
+    {
+        cont2++;
+        if(cont2 == 1)
+        {
+            time -= 10;
+        }
+        if((cont2 - cont3) == 18 - cont3)
+        {
+            cont2 = 0;
+        }
     }
 
 }

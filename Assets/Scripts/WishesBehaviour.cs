@@ -6,10 +6,9 @@ using TMPro;
 public class WishesBehaviour : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currentWish;
-    public GameObject mold;
     public int wish;
     private List<int> usedNumbers = new List<int> ();
-    public GameObject gameManager;
+    [SerializeField] private GameObject gameManager;
     private int cont = 1;
 
     // Start is called before the first frame update
@@ -21,12 +20,15 @@ public class WishesBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!gameManager.GetComponent<TimerBehaviour>().won)
+        {
             if((gameManager.GetComponent<CardsCounter>().next) && cont != 6)
             {
                 ChangeWish();
                 gameManager.GetComponent<CardsCounter>().next = false;
                 cont++;
             }
+        } 
     }
 
     private void ChangeWish()
@@ -42,6 +44,5 @@ public class WishesBehaviour : MonoBehaviour
             ChangeWish();
         }
         gameManager.GetComponent<CardsCounter>().next = false;
-        Debug.Log(cont);
     }
 }

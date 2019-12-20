@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class ScrollBehaviour : MonoBehaviour
 {
-    public GameObject Scroll;
-    public GameObject mold;
+    [SerializeField] private GameObject Scroll;
+    [SerializeField] private GameObject mold;
+    [SerializeField] private GameObject mold2;
+    [SerializeField] private GameObject gameManager;
     private bool scrollOn = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool scrollOff = true;
 
     // Update is called once per frame
     void Update()
     {
-        if((Input.GetKeyDown(KeyCode.Z)) && !scrollOn)
+        if((Input.GetKeyDown(KeyCode.A)) && !scrollOn)
         {
             if(mold.GetComponent<CardsBehaviour>().useScroll)
             {
                 ShowScroll();
+                scrollOff = false;
             }
         }
 
-        else if(Input.GetKeyDown(KeyCode.Z) && scrollOn)
+        else if(Input.GetKeyDown(KeyCode.A) && scrollOn)
         {
             HideScroll();
+            scrollOff = true;
         }
     }
 
@@ -34,6 +34,7 @@ public class ScrollBehaviour : MonoBehaviour
     {
         Scroll.SetActive(true);
         scrollOn = true;
+        gameManager.GetComponent<TimerBehaviour>().time -= 5;
     }
 
     private void HideScroll()
